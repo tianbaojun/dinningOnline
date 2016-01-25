@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">dinningOnline</string>
+    <string name="btn_back">返回</string>
+    <string name="center_top_name">订餐系统</string>
+    <string name="btn_search">搜索</string>
+    <string name="allfood">全部美食</string>
+    <string name="bestfood">特价美食</string>
+    <string name="onsale">本店特价</string>
+    <string name="collect">收藏</string>
+    <string name="add">添加</string>
+</resources>
