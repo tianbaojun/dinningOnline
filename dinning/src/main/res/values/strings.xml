@@ -8,4 +8,7 @@
     <string name="onsale">本店特价</string>
     <string name="collect">收藏</string>
     <string name="add">添加</string>
+    <string name="clear">清空</string>
+    <string name="cart">购物车</string>
+    <string name="submit">提交</string>
 </resources>
