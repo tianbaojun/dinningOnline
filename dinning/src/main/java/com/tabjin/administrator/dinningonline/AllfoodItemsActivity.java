@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 
+import com.tabjin.administrator.dinningonline.bean.Food;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,6 +122,16 @@ public class AllfoodItemsActivity extends TabActivity{
                         R.id.allfood_items_comment_userdesc});
         allfood_items_comments = (ListView) findViewById(R.id.allfood_items_comments);
         allfood_items_comments.setAdapter(allfood_items_comment_adapter);
+    }
+
+//    给food初始化
+    public static List<Food> listFoodInit(){
+        List<Food> foodList = new ArrayList<>();
+        for(int i =0;i<100;i++){
+            Food food = new Food("菜品"+(i+1),"菜品"+(i+1)+"的简介",(int)(Math.random()*100),1);
+            foodList.add(food);
+        }
+        return foodList;
     }
 
 

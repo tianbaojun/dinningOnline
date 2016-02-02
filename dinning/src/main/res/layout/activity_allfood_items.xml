@@ -40,8 +40,7 @@
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:textSize="40dp"
-
+                android:textSize="20dp"
                 android:text="@string/cart"/>
         </RelativeLayout>
     </LinearLayout>

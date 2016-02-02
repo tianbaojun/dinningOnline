@@ -1,9 +1,11 @@
 package com.tabjin.administrator.dinningonline.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/1/26.
  */
-public class Food {
+public class Food implements Serializable{
 
     private String name;
     private String desc;

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.tabjin.administrator.dinningonline.CartActivity;
 import com.tabjin.administrator.dinningonline.R;
 import com.tabjin.administrator.dinningonline.bean.Food;
 
@@ -50,9 +51,11 @@ public class CartListAdapter extends BaseAdapter {
         final TextView tv_num;
         TextView tv_name;
         TextView tv_price;
-
+        final CartActivity cartActivity = (CartActivity) context;
         final Food food = foods.get(position);
+
         convertView =  mInflater.inflate(R.layout.cart_list_item,null);
+
         tv_num = (TextView) convertView.findViewById(R.id.num_food_list_cart);
         tv_name = (TextView) convertView.findViewById(R.id.name_food_list_cart);
         tv_price = (TextView) convertView.findViewById(R.id.price_food_list_cart);
@@ -66,6 +69,7 @@ public class CartListAdapter extends BaseAdapter {
                 int foodNum = food.getNum();
                 tv_num.setText(String.valueOf(++foodNum));
                 food.setNum(foodNum);
+                cartActivity.setAmountText(getAmount(foods));
 //                notifyDataSetChanged();
             }
         });
@@ -79,13 +83,21 @@ public class CartListAdapter extends BaseAdapter {
                     tv_num.setText(String.valueOf(--foodNum));
                 }
                 food.setNum(foodNum);
-
+                cartActivity.setAmountText(getAmount(foods));
             }
         });
         tv_name.setText(food.getName());
         tv_price.setText(String.valueOf(food.getPrice()));
         tv_num.setText(String.valueOf(food.getNum()));
         return convertView;
+    }
+
+    public static int getAmount(List<Food> foodList){
+        int amount = 0;
+        for(Food food:foodList){
+            amount+=food.getPrice()*food.getNum();
+        }
+        return amount;
     }
 
 }
