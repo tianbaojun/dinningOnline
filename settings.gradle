@@ -1,1 +1,1 @@
-include ':dinning', ':medicalrecord'
+include ':dinning'
