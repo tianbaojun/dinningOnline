@@ -2,12 +2,17 @@ package com.tabjin.administrator.dinningonline;
 
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
+
+import com.tabjin.administrator.dinningonline.bean.Food;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +32,6 @@ public class AllfoodItemsActivity extends TabActivity{
     public ListView allfood_items_comments;
     private ArrayList<String> itemName,itemDesc,userName,userComment;
     private ArrayList<Integer> itemAttention;
-    private ArrayList<Double> itemPrice;
     private String itemTypestr;
 
     public SimpleAdapter allfood_items_list_adapter;
@@ -41,24 +45,31 @@ public class AllfoodItemsActivity extends TabActivity{
         //给allfoodItemsList菜品初始化
         allfoodItemsList = new ArrayList<>();
         itemName = new ArrayList<>();
-        itemPrice = new ArrayList<>();
+        ArrayList<Double> itemPrice = new ArrayList<>();
         itemDesc = new ArrayList<>();
         itemAttention = new ArrayList<>();
         //给allfoodItemsComments评论初始化
         allfoodItemsComments = new ArrayList<>();
         userName = new ArrayList<>();
         userComment = new ArrayList<>();
+        RelativeLayout toCart = (RelativeLayout) findViewById(R.id.from_food_items_to_cart);
+        toCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllfoodItemsActivity.this,CartActivity.class));
+            }
+        });
         //给菜品赋值
         for(int i =0;i<100;i++){
             Map<String,Object> item = new HashMap<>();
             itemName.add("菜品"+(i+1));
             itemAttention.add((int)(Math.random()*1000));
             itemDesc.add(itemName.get(i)+"的简介........");
-            itemPrice.add((int)(Math.random() * 100)+0.9);
+            itemPrice.add((int) (Math.random() * 100) + 0.9);
             item.put("name", itemName.get(i));
             item.put("desc",itemDesc.get(i));
             item.put("attention", "关注度："+itemAttention.get(i));
-            item.put("price","￥"+itemPrice.get(i));
+            item.put("price","￥"+ itemPrice.get(i));
             allfoodItemsList.add(item);
         }
         //给评论赋值
@@ -111,6 +122,16 @@ public class AllfoodItemsActivity extends TabActivity{
                         R.id.allfood_items_comment_userdesc});
         allfood_items_comments = (ListView) findViewById(R.id.allfood_items_comments);
         allfood_items_comments.setAdapter(allfood_items_comment_adapter);
+    }
+
+//    给food初始化
+    public static List<Food> listFoodInit(){
+        List<Food> foodList = new ArrayList<>();
+        for(int i =0;i<100;i++){
+            Food food = new Food("菜品"+(i+1),"菜品"+(i+1)+"的简介",(int)(Math.random()*100),1);
+            foodList.add(food);
+        }
+        return foodList;
     }
 
 
